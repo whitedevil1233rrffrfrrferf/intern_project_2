@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload zip folders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+</head>
+<body style="background-color:white;">
+  <div style="display: flex;">
+    {% include 'sidemenu.html'%}
+    <div class="container">
+      <center><h1 style="text-align: center; background-color: #00A9FF; color: white; width:48rem; ">Upload multiple zip folders</h1></center>
+      <div class="container" style="margin-top:150px; margin-left:250px;padding:10px; width:49rem;">
+          <form action="/zip" method="POST" enctype="multipart/form-data" style=" border: 1px solid black;">
+              <div class="filter" style="margin-bottom:40px; margin-left: 40px;">
+                  <label for="tag"  style="font-size:25px;">Select Role:</label>
+                  <select id="tag" name="tag">
+                    <option></option>
+                    <option value="Interns">Interns</option>
+                    <option value="Delivery Manager">Delivery Manager</option>
+                    <option value="QA architect">QA architect</option>
+                    <option value="Performance Tester">Performance Tester</option> 
+                  </select>
+              </div>
+              <label for="zipFilesInput" style="font-size: 25px;  margin-right: 20px; margin-left: 40px;">Select zip folders :</label>
+              <input type="file" id="zipFilesInput" name="zipFiles" accept=".zip" multiple>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div style="display: flex;">
+                <div style="padding: 10px; margin-left:20px; margin-top: 30px;">
+                  <div style="display: flex; margin-left:170px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;"><i class="fa-solid fa-star" style="color: red;"></i> <h4 style="text-align: center;">Supports only Zip files </h4> <i class="fa-solid fa-star" style="color: red;"></i></div>
+                </div>
+
+              </div> 
+          </form>
+          <div>
+              <a class="btn btn-primary" href="/resume" style="color:white; padding:10px ;margin-top:50px;margin-left: 200px;"><div style="display: flex; justify-content: space-between; padding:5px;">
+                  <div>
+                    <i class="fa-solid fa-backward" style="margin-right: 10px;"></i>
+                    
+                  </div>
+                  <div>
+                    Back
+                  </div>
+                  
+                </div></a>
+                
+          </div>
+          
+      </div>
+    </div>
+  </div>
+    
+</body>
+</html>

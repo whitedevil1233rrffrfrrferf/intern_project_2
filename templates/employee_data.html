@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='employee.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='view.css') }}">
+    <style>
+      .table {
+            width: 100%;
+            table-layout: fixed; /* Fix the table layout */
+        }
+
+        .table td,
+        .table th {
+             /* Adjust padding as needed */
+            font-size: 14px; /* Adjust font size as needed */
+            white-space: nowrap; /* Prevent text wrapping */
+            overflow: hidden; /* Hide any overflowing content */
+            text-overflow: ellipsis; /* Show ellipsis for overflow */
+        }
+    </style>
+</head>
+<body>
+    <div class="first_div" >
+        {%include 'sidemenu.html'%}
+        <div style="margin-left:90px ;">
+            <h1 class="title my-2"><center>Employee's Data</center></h1>
+            <div class="table my-4">
+                <table class="table highlighted_row">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="table_header">Sno</th>
+                      <th scope="col" class="table_header" >Emp_id</th>
+                      <th scope="col" class="table_header">Name</th>
+                      <th scope="col" class="table_header">Designation</th>
+                      <th scope="col" class="table_header">Department</th>
+                      <th scope="col" class="table_header">Project</th>
+                      <th scope="col" class="table_header">Job_role</th>
+                      <th scope="col" class="table_header">Employment_status</th>
+                      <th scope="col" class="table_header">Joining_date</th>
+                      <th scope="col" class="table_header">Experience</th>
+                      <th scope="col" class="table_header">Location</th>
+                      <th scope="col" class="table_header">Last_promoted</th>
+                      <th scope="col" class="table_header">Comments</th>
+                      <th hidden>Empl</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  
+                    {% for employee in data %}
+                    <tr {% if employee.employee_status == 'resigned' %}style="background-color: red;"{% endif %}>
+                      <th scope="row" >{{loop.index}}</th>
+                      <td class="emp_id" class="table-primary">{{employee.Emp_id}}</td>
+                      <td id="Name">{{employee.Name}}</td>
+                      <td id="Designation">{{employee.Designation}}</td>
+                      <td>{{employee.Department}}</td>
+                      <td id="Project">{{employee.Project}}</td>
+                      <td>{{employee.Job_role}}</td>
+                      <td id="employment_status">{{employee.Employment_status}}</td>
+                      <td id="joining_date">{{employee.Joining_date}}</td>
+                      <td>{{employee.Experience}}</td>
+                      <td id="employee_location">{{employee.Location }}</td>
+                      <td>{{employee.Last_promoted }}</td>
+                      <td>{{employee.Comments}}</td>
+                      <td id="employee_status" hidden>{{employee.employee_status}}</td>
+                      <!-- <td><a href="" type="button" class="btn btn-outline-secondary btn-sm mx-1">Update</button></td> -->
+                      <td><a class="icon-1" href="/update/{{employee.Sno}}"><i class="fa-solid fa-pencil mx-2"></i></a></td>  
+                      <td><a href="/delete/{{employee.Sno}}"><i class="fa-solid fa-trash mx-2"></i></a></td>
+                      <td><a class="icon-2" href="/view/{{employee.Sno}}"><i class="fa-solid fa-eye mx-2"></i></a></td>
+                        <!-- <td><a href="" type="button" class="btn btn-outline-secondary btn-sm mx-1">Delete</button></td>   -->
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+        </div>
+</body>
+</html>

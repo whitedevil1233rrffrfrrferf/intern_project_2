@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='update.css') }}">
+  </head>
+  <body>
+    <div style="display: flex;">
+      {% include 'sidemenu.html'%}
+      <div class="container my-3" style="width:60%">
+        <h1 class="title">Update </h1>
+    
+        <form action="/update/{{employee.Sno}}" method="post">
+            <div class="mb-3 label">
+              <label for="emp_id" class="form-label">Emp_id: <i class="fa-solid fa-star" style="color: red;font-size:10px;bottom: 10px; position: relative;"></i></label>
+              <input type="text" class="form-control" id="emp_id" name="emp_id" value="{{employee.Emp_id | safe}}" aria-describedby="emailHelp" required>
+              
+            </div>
+            <div class="mb-3 label">
+              <label for="name" class="form-label">Name: <i class="fa-solid fa-star" style="color: red;font-size:10px;bottom: 10px; position: relative;"></i></label>
+              <input type="text" class="form-control" value="{{ employee.Name | safe }}" name="name" id="name" required>
+            </div>
+            <!-- <div class="mb-3">
+                <label for="designation" class="form-label">Designation:</label>
+                <input type="text" class="form-control"  value="{{employee.Designation | safe }}" name="designation" id="designation">
+            </div> -->
+            <div class="mb-3 label">
+              <label for="designation" class="form-label">Designation: <i class="fa-solid fa-star" style="color: red;font-size:10px;bottom: 10px; position: relative;"></i></label>
+              <select name="designation" data-target="otherProjectField" class="form-select toggle-dropdown" id="designation" required>
+                <option value="">Select</option>
+              </select>
+            </div>
+            <div class="mb-3 label">
+                <label for="department" class="form-label">Department:</label>
+                <input type="text" class="form-control" value="{{employee.Department | safe}}" name="department" id="department">
+            </div>  
+            <!-- <div class="mb-3">
+                <label for="project" class="form-label">Project:</label>
+                <input type="text" class="form-control" value="{{employee.Project | safe}}" name="project" id="project">
+            </div>    -->
+            <div class="mb-3 label">
+              <label for="project" class="form-label">Project: <i class="fa-solid fa-star" style="color: red;font-size:10px;bottom: 10px; position: relative;"></i></label>
+              <select name="project" data-target="otherProjectField" class="form-select toggle-dropdown" id="project" required>
+                <option value="">Select</option>
+              </select>
+            </div>
+            <div class="mb-3 label">
+                <label for="job_role" class="form-label">Job_role:</label>
+                <input type="text" class="form-control" value="{{employee.Job_role | safe}}" name="job_role" id="job_role">
+            </div>    
+            <!-- <div class="mb-3">
+                <label for="employment_status" class="form-label">Employment_status:</label>
+                <input type="text" class="form-control" value="{{employee.Employment_status | safe}}" name="employment_status" id="employment_status">
+            </div>  -->
+            <div class="mb-3 label">
+              <label for="employment_status" class="form-label">Employment status: <i class="fa-solid fa-star" style="color: red;font-size:10px;bottom: 10px; position: relative;"></i></label>
+              <select name="employment_status" data-target="otherProjectField" id="employment_status" class="form-select toggle-dropdown" required>
+                <option value="">Select</option>
+              </select>
+            </div>
+            <div class="mb-3 label">
+              <label for="joining_date" class="form-label">Joining_date: <i class="fa-solid fa-star" style="color: red;font-size:10px;bottom: 10px; position: relative;"></i></label>
+              <div class="cont">
+                <input  type="date" class="form-control" value="{{employee.Joining_date}}" name="joining_date" id="joining_date" required>
+                
+              </div>
+            </div>
+          
+            <!-- <div class="mb-3">
+                <label for="experience" class="form-label">Experience:</label>
+                <input type="text" class="form-control" value="{{employee.Experience | safe}}" name="experience" id="experience">
+            </div>  -->
+            <div class="mb-3 label">
+                <label for="location" class="form-label">Location: <i class="fa-solid fa-star" style="color: red;font-size:10px;bottom: 10px; position: relative;"></i></label>
+                <select name="location" data-target="otherLocationField" id="location" class="form-select toggle-dropdown" required>
+                  <option value="">Select</option>
+                </select>
+            </div> 
+            <div class="mb-3 label">
+                <label for="last_promoted" class="form-label">Last_promoted:</label>
+                <input type="text" class="form-control" value="{{employee.Last_promoted | safe}}" name="last_promoted" id="last_promoted">
+            </div> 
+            <div class="mb-3 label">
+                <label for="comments" class="form-label">Comments:</label>
+                <input type="text" class="form-control" value="{{employee.Comments | safe}}" name="comments" id="comments">
+            </div>
+            <div class="mb-3 label">
+              <label for="status" class="form-label">Status:</label>
+              <select name="status" data-target="otherProjectField" id="status" class="form-select toggle-dropdown">
+                <option value="">Select</option>
+              </select>
+            </div> 
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <a class="btn btn-primary" href="/home" style="color:white; padding:10px ;margin-top:30px; margin-left:570px;"><div style="display: flex; justify-content: space-between; padding:5px;">
+            <div>
+              <i class="fa-solid fa-backward" style="margin-right: 10px;"></i>
+            </div>
+            <div>
+              Back
+            </div>
+          </div></a>
+    </div> 
+      </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='config.js') }}"></script>
+    <script src="{{ url_for('static', filename='update.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

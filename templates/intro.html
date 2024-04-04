@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='intro.css') }}">
+  </head>
+<body>
+    <div style="display: flex;">
+      {% include 'sidemenu.html'%}
+      <div class="container" style="width: 950px;">
+        <h1 style="text-align: center;  background-color:#4699F9; color: white;">Enter Intro call details</h1>
+        <div style="margin-top:50px;">
+            <form action="/introcall/{{ resume.id }}" method="post" onsubmit="updateSelectedPanelInput()">
+              <div style=" margin-bottom:40px;">
+                <div class="mb-3 select-btn">
+                  <label for="calledBy" class="form-label btn-text" >Select panel</label>
+                  <!-- <input type="text" id="newPerson" placeholder="Add a person">
+                  <button type="button" onclick="addPerson()">Add</button> -->
+                  <span class="arrow-dwn">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </span>
+                 
+                </div>
+                <ul id="panelList" class="list-items">
+                  <li class="items">
+                    <span class="checkbox">
+                      <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">
+                      Person 1
+                    </span>
+                   
+                  </li>
+                  <!-- this is the new li item                   -->
+                  <li class="items">
+                    <span class="checkbox">
+                      <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">
+                      Person 2 
+                    </span>
+                  </li>
+                  <li class="items">
+                    <span class="checkbox">
+                      <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">
+                      Person 3
+                    </span>
+                  </li>
+                  
+                </ul>
+                <div >
+                  <input type="text" id="newPersonInput" placeholder="Add a new panel" style="margin-top:20px; width: 20rem; height:2rem; border: 1px solid black ; border-radius:2px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); outline: none; color: black; padding: 10px; font-size: 1em;">
+                  <button id="addPersonBtn" class="btn btn-dark">Add</button>
+                  
+              </div>
+              </div>
+                <div class="mb-3">
+                  <label for="date" class="form-label"  style="font-size:20px; color:#1AACAC;">Date</label>
+                  <i class="fa-solid fa-star" style="font-size:8px;position: relative;bottom:10px; color: red;"></i>
+                  <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+                <div class="mb-3">
+                    <label for="status"  style="font-size:20px; color:#1AACAC; margin-top: 20px;">Status</label>
+                    <i class="fa-solid fa-star" style="font-size:8px;position: relative;bottom:10px; color: red;"></i>
+                    <select id="status" name="status" required>
+                      <option></option>
+                      <option value="Rejected">Rejected</option>
+                      <option value="Move to Interview 1">Move to Interview 1</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                  <label for="comments"  style="font-size:20px; color:#1AACAC; margin-top: 20px;">Comments</label>
+                  <i class="fa-solid fa-star" style="font-size:8px;position: relative;bottom:10px; color: red;"></i>
+                  <input class="form-control" type="text" name="comments" placeholder="Enter your comments" required>
+                </div>
+                <div style="display: flex; align-items: center;">
+                  <div class="mb-3">
+                    <a type="button" class="btn btn-primary" href="/interview1v/{{ resume.id }}" style="margin-bottom: 20px; margin-top: 20px; margin-right: 30px;">Interview 1</a>
+                  </div>
+                  <div class="mb-3">
+                    <a type="button" class="btn btn-primary" href="/interview2v/{{resume.id}}" >Interview 2</a>
+                  </div>
+                </div>
+                <input type="hidden" id="selectedPanel" name="selectedPanel" value="">
+                <button type="submit" class="btn btn-primary" style="margin-top:30px;">Submit</button>
+              </form>
+        </div>
+        <a class="btn btn-primary" href="/employee_management" style="color:white; padding:10px ;margin-top:10px; margin-left:370px;"><div style="display: flex; justify-content: space-between; padding:5px;">
+          <div>
+            <i class="fa-solid fa-backward" style="margin-right: 10px;"></i>
+          </div>
+          <div>
+            Back
+          </div>
+        </div></a>
+      </div>
+    </div>
+    
+      <script src="{{ url_for('static', filename='intro.js') }}"></script> 
+</body>
+</html> 

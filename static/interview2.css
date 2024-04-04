@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    font-family: "poppins",sans-serif;
+    margin: 0;
+    
+}
+.select-btn{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    background-color: #e3f2fd;
+    padding: 0 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    height:45px;
+    
+}
+
+.btn-text{
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+}
+.arrow-dwn{
+    display: flex;
+    height: 21px;
+    width: 21px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    transition: 0.3s;
+}
+.list-items{
+    position: relative;
+    background-color: #e3f2fd;;
+    margin-top:15px;
+    border-radius: 8px;
+    padding:16px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.items{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+    transition:0.3s;
+    padding: 0 15px;
+    border-radius: 8px;
+}
+.items:hover{
+    background-color: white;
+}
+.main{
+    width:950px;
+}
+.checkbox{
+    height:16px;
+    width: 16px;
+    border-radius: 4px;
+    margin-right: 12px;
+    display: flex;
+    justify-content: center;
+    border:1.5px solid #c0c0c0;
+    transition: all 0.3s ease-in-out;
+
+}
+.check-icon{
+    font-size: 15px;
+    transform: scale(0);
+    color: white;
+}
+.item-text{
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+}
+.select-btn.open ~ .list-items{
+    display: block;
+}
+
+.select-btn.open .arrow-dwn{
+    transform: rotate(-180deg);
+}
+.checked .check-icon{
+    transform: scale(1);
+    transition: all 0.3s ease-in-out;
+}
+.checked .checkbox{
+    background-color: #4070f4;
+    border-color: #4070f4;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover {
+    color: #007bff; 
+}
+.item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:900px; /* Adjust the width as needed */
+}
+
+.item-text {
+    flex-grow: 1;
+}
+
+.delete-btn:hover{
+    background-color: grey;
+    transform: scale(1.1);
+}

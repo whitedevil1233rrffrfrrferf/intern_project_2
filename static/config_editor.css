@@ -1,0 +1,20 @@
+.main_div{
+    display: flex;
+
+}
+form{
+    margin-left:150px;
+    
+}
+.heading{
+    background-color: #00A9FF;
+    color: white;
+    margin-bottom:30px;
+}
+input{
+    margin-bottom:30px;
+  }
+
+.save_button{
+    margin-top: 20px;
+}

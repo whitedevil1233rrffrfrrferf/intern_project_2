@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <div>
+      {% include "sidemenu.html" %}
+      <div>
+        <h1 class="heading"><center>Register</center></h1>
+    <div class="container sign_div">
+      <form action="/register" method="post" class="form_div container" enctype="multipart/form-data" style="padding: 10px; margin-left:30px;">
+          <div class="mb-3 my-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control form-input" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control form-input" name="password" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control form-input" id="name" name="name">
+          </div>
+          <div class="mb-3">
+              <label for="mobile" class="form-label">Mobile Number</label>
+              <input type="text" class="form-control form-input" id="mobile" name="mobile">
+          </div>
+          <div class="mb-3">
+              <label for="role" class="form-label">Role</label>
+              <select name="role" class="form-select" style="width: 200px;">
+                  <option value="">Select</option>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+              </select>
+          </div>
+          <div class="mb-3">
+            <label for="photo" class="form-label">Image</label>
+            <input id="photo" name="photo" type="file">
+        </div>
+          <button type="submit" class="btn btn-light">Register</button>
+      </form>
+      <div>
+        <a class="btn btn-primary" href="/home" style="color:white; padding:10px ;margin-top:50px;margin-left: 200px;"><div style="display: flex; justify-content: space-between; padding:5px;">
+            <div>
+              <i class="fa-solid fa-backward" style="margin-right: 10px;"></i>
+              
+            </div>
+            <div>
+              Back
+            </div>
+            
+          </div></a>
+          
+    </div>
+  </div>
+      </div>
+    </div>
+    
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+  </body>
+</html>

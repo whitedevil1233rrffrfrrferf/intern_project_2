@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuration Editor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='config_editor.css') }}">
+  
+    
+  
+</head>
+<body>
+ 
+  <div class="main_div">
+    {% include 'sidemenu.html'%}
+    <div style="margin-left: 150px; margin-bottom: 20px; width: 60%;">
+      <div >
+        <h1 class="mt-5 text-center heading" style="margin-left:150px; width:82%;">Home</h1>
+      
+      <div class="container mt-5">
+        <form id="configForm" class="mb-5">
+          <div class="mb-3">
+            <label for="projects" class="form-label">Projects:</label>
+            <input type="text" id="projects" name="projects" class="form-control">
+          </div>
+    
+          <div class="mb-3">
+            <label for="designations" class="form-label">Designations:</label>
+            <input type="text" id="designations" name="designations" class="form-control">
+          </div>
+    
+          <div class="mb-3">
+            <label for="employmentStatuses" class="form-label">Employment Statuses:</label>
+            <input type="text" id="employmentStatuses" name="employmentStatuses" class="form-control">
+          </div>
+    
+          <div class="mb-3">
+            <label for="statuses" class="form-label">Statuses:</label>
+            <input type="text" id="statuses" name="statuses" class="form-control">
+          </div>
+    
+          <div class="mb-3">
+            <label for="locations" class="form-label">Locations:</label>
+            <input type="text" id="locations" name="locations" class="form-control">
+          </div>
+    
+          <center><button type="submit" class="btn btn-primary save_button">Save</button></center>
+    
+        </form>
+      </div>
+      <div class="container mt-5">
+        <!-- Form for Add Configuration -->
+        <form id="addForm" class="mb-5">
+            <h2 class="text-center mt-5 heading" style=" margin-bottom:50px;">Add</h2>
+            <div class="form-group">
+                <label for="addDesignations">Designations:</label>
+                <input type="text" id="addDesignations" name="addDesignations" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="addProjects">Projects:</label>
+                <input type="text" id="addProjects" name="addProjects" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="addEmploymentStatus">Employment Statuses:</label>
+                <input type="text" id="addEmploymentStatus" name="addEmploymentStatus" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="addLocations">Locations:</label>
+                <input type="text" id="addLocations" name="addLocations" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="addStatuses">Statuses:</label>
+                <input type="text" id="addStatuses" name="addStatuses" class="form-control">
+            </div>
+            <center><button type="submit" class="btn btn-primary save_button">Save</button></center>
+        </form>
+    
+        <!-- Form for Update Configuration -->
+        <form id="updateForm" class="mb-5">
+            <h2 class="text-center heading" style=" margin-bottom:50px;">Update</h2>
+            <div class="form-group">
+                <label for="updateDesignations">Designations:</label>
+                <input type="text" id="updateDesignations" name="updateDesignations" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="updateProjects">Projects:</label>
+                <input type="text" id="updateProjects" name="updateProjects" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="updateEmploymentStatus">Employment Statuses:</label>
+                <input type="text" id="updateEmploymentStatus" name="updateEmploymentStatus" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="updateLocations">Locations:</label>
+                <input type="text" id="updateLocations" name="updateLocations" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="updateStatuses">Statuses:</label>
+                <input type="text" id="updateStatuses" name="updateStatuses" class="form-control">
+            </div>
+            <center><button type="submit" class="btn btn-primary save_button">Save</button></center>
+        </form>
+        <!-- Form for Upload Resume Configuration -->
+        
+
+    </div>
+    <form id="uploadResumeForm" class="mb-5">
+      <h2 class="text-center mt-5 heading" style="margin-bottom: 50px;">Upload Resume</h2>
+      <div class="form-group">
+          <label for="selectRole">Select Role:</label>
+          <input id="selectRole" name="selectRole" class="form-control">
+              
+              <!-- Populate options dynamically using JavaScript -->
+          
+      </div>
+      <center><button type="submit" class="btn btn-primary save_button">Save</button></center>
+    </form>
+    
+      </div>
+    </div>
+    
+  </div>
+
+  
+
+  <!-- Bootstrap JS (optional, only if needed) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+   
+  <script src="{{ url_for('static', filename='config.js') }}"></script> 
+  <script src="{{ url_for('static', filename='config_editor.js') }}"></script> 
+</body>
+</html>

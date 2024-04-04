@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <title>View</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='view1.css') }}">
+</head>
+<body>
+  <div style="display: flex;">
+    {% include 'sidemenu.html'%}
+    <div style="margin-left: 150px;">
+      <h1 class="my-3 heading"><center>{{data.Name}}'s record</center></h1> 
+   <table class="table my-3">
+    <thead>
+      <tr>        
+        <th scope="col" class="table_header">Emp_id</th>
+        <th scope="col" class="table_header">Name</th>
+        <th scope="col" class="table_header">Designation</th>
+        <th scope="col" class="table_header">Department</th>
+        <th scope="col" class="table_header">Project</th>
+        <th scope="col" class="table_header">Job_role</th>
+        <th scope="col" class="table_header">Employment_status</th>
+        <th scope="col" class="table_header">Joining_date</th>
+        <th scope="col" class="table_header">Experience</th>
+        <th scope="col" class="table_header">Location</th>
+        <th scope="col" class="table_header">Last_promoted</th>
+        <th scope="col" class="table_header">Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+           
+            <td>{{data.Emp_id}}</td>
+            <td id="Name">{{data.Name}}</td>
+            <td>{{data.Designation}}</td>
+            <td>{{data.Department}}</td>
+            <td>{{data.Project}}</td>
+            <td>{{data.Job_role}}</td>
+            <td>{{data.Employment_status}}</td>
+            <td>{{data.Joining_date}}</td>
+            <td>{{data.Experience}}</td>
+            <td>{{data.Location }}</td>
+            <td>{{data.Last_promoted }}</td>
+            <td>{{data.Comments}}</td>
+        </tr>
+    </tbody>
+    </table> 
+    <a class="btn btn-primary" href="/home" style="color:white; padding:10px ;margin-top:30px; margin-left:600px;"><div style="display: flex; justify-content: space-between; padding:5px;">
+      <div>
+        <i class="fa-solid fa-backward" style="margin-right: 10px;"></i>
+      </div>
+      <div>
+        Back
+      </div>
+    </div></a>
+    </div>
+  </div>
+   
+</body>
+</html>

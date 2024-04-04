@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+  </head>
+  <body>
+    <div style="display: flex;">
+      {% include 'sidemenu.html' %}
+      
+      <div class="content" style="padding:10px; height: 100vh; width:100%; margin-left: 150px;">
+        <h1 style="padding: 50px;"><center>Dashboard</center></h1>
+      <div class="flex_div" style="flex: 1; justify-content: space-between;">
+        <div class="row row-cols-1 row-cols-md-3 g-4" style="padding: 10px;">
+          <div class="col">
+            <div class="card h-100 ">
+              
+              <div class="card-body" >
+                <i class="fa-solid fa-3x fa-users icons"></i>
+                
+                <p class="card-text" >Total number of employees :{{ total_employees }}</p>
+                <p class="card-text">Number of active employees :{{active_employees }}</p>
+                <p class="card-text">Number of resigned employees :{{resigned_employees }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <img src="https://banner2.cleanpng.com/20190724/geb/kisspng-product-design-technology-font-5d385089740a08.2768103715639717214753.jpg" height="50px" width="50px" class="icons">
+                <p class="card-text">No of Applications: {{total_resumes}}</p>
+                <p class="card-text">No of applications selected :{{hr_selected}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              
+              <div class="card-body">
+                <img src="https://static.vecteezy.com/system/resources/previews/006/085/712/original/job-application-icon-free-vector.jpg" height="50px" width="50px" class="icons">
+                
+                <p class="card-text">Employees joined this year : {{current_year_count}}</p>
+                <p class="card-text">Employees joined Last year : {{last_year_count}}</p>
+                
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <i class="fa-solid fa-location-dot fa-2x" style="color: black; margin-bottom: 10px;"></i>
+                <p class="card-text">Chennai employees count: {{Chennai_employees_count}}</p>
+                <p class="card-text">Kollu employees count: {{kollu_employees_count}}</p>
+                <p class="card-text">Kaup employees count: {{kaup_employees_count}}</p>
+                <p class="card-text">TN palayam employees count: {{tn_palyam_count}}</p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      </div>
+     
+    </div>
+    
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+    

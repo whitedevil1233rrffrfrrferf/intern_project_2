@@ -1,0 +1,38 @@
+*{
+    font-family:"poppins";
+
+    
+}
+.content{
+    background-color: white;
+    
+    
+}
+.icon{
+    color:black;
+}
+.card{
+    background-color:#00A9FF;
+    border:1px solid white;
+    box-shadow:0 4px 8px rgba(0,0,0, 0.1);
+    color: white;
+    width:25rem;
+}
+.card-body{
+    text-align: center;
+    padding: 5px;
+}
+.card-text{
+    font-size:18px;
+}
+.card:hover{
+    background-color: grey;
+    transition:0.3s;
+}
+
+.icons{
+    color: white;
+}
+.sidemenu{
+    
+}

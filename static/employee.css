@@ -1,0 +1,39 @@
+*{
+    margin: 0 ;
+    font-family: "poppins";
+}
+.main_div{
+    margin: 0%;
+    width:24%; 
+    height: 100%;
+    background-color:#4699F9;
+}
+.sidemenu_items{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    margin-bottom:40px;
+}
+.sidemenu_items:hover{
+    transform: scale(0.9);
+}
+.icon{
+    margin-right:30px;
+    color: white;
+}
+.main_icon{
+    margin-left:10px;
+    margin-bottom:30px;
+}
+.first_div{
+    display: flex;
+}
+a{
+    text-decoration: none;
+}
+
+.filename-cell {
+    font-size: 22px;
+    word-wrap: break-word;  /* This property allows long words to be broken and wrap onto the next line */
+    overflow-wrap: break-word; /* For browsers that support the newer property name */
+}

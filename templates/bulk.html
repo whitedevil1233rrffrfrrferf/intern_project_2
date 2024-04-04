@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bulk add</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div>
+      {% include 'sidemenu.html'%}
+      <div>
+        <center><h1 class="heading" style="width: 60%;">Bulk add employees using Excel File</h1></center>
+    <div class="container">
+      
+      <div class="card">
+        <div class="card-body">
+            <div class="container" style="display: flex; justify-content: space-around; align-items: center; height: 20rem; margin-top: 20px;">
+                <form action="/bulk" method="post" enctype="multipart/form-data" style=" max-width: 30rem; border: 1px solid black; padding: 20px; width:30rem; box-shadow: 5px 15px 25px rgba(0,0,0,0.35);">
+    
+                    <div  style="position: relative; left:100px;">
+                        <h4 style="display: inline; text-align: center;">File:</h4>
+                        <label for="file">Choose a File <i class="fa-solid fa-upload"></i></label>
+                        <input type="file" id="file" name="file" class="file-input" accept=".xlsx,.csv" required>
+                    </div>
+    
+                    <button type="submit" class="btn btn-primary mt-3 upload" style="position: relative; left:170px; top:10px;">Upload</button>
+                </form>
+    
+                <div style="border: 1px solid black; padding: 20px; width:30rem; box-shadow: 5px 15px 25px rgba(0,0,0,0.35); height:10rem;">
+                    <h2 style="text-align: center;">Download Excel format</h2>
+                    <a href="static/excel_file/excel_format.xlsx" download class="btn btn-info icon mt-3">Download <i
+                            class="fa-solid fa-download"></i></a>
+                           
+                </div>
+                
+            </div>
+            <div style="display: flex;">
+              <div style="padding: 10px; margin-left:200px;">
+                <div style="display: flex;"><i class="fa-solid fa-star" style="color: red;"></i> <h4>Supports only EXCEL files .Please find the sample EXCEL file <i class="fa-solid fa-hand-point-up"></i></h4> <i class="fa-solid fa-star" style="color: red;"></i></div>
+              </div>
+
+            </div> 
+        </div>
+    </div>
+    
+      
+    
+    <!-- <div class="container" style="display: flex; justify-content: space-around; align-items: center; height: 20rem; margin-top: 20px;" >
+        <form action="/bulk" method="post" enctype="multipart/form-data" style="border: 1px solid black; padding: 20px; width:30rem; box-shadow: 5px 15px 25px rgba(0,0,0,0.35);" >
+
+            <div style="position: relative; left:100px;">
+              <h4 style="display: inline; text-align: center;">File:</h4>
+                <label for="file">Choose a File <i class="fa-solid fa-upload"></i></label>
+                <input type="file" id="file" name="file" class="file-input" accept=".xlsx,.csv" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3 upload" style="position: relative; left:170px; top:10px;">Upload</button>
+        </form>
+
+        <div style="border: 1px solid black; padding: 20px; width:30rem; box-shadow: 5px 15px 25px rgba(0,0,0,0.35); height:10rem;">
+            <h2 style="text-align: center;">Download Excel format</h2>
+            <a href="static/excel_file/excel_format.xlsx" download class="btn btn-info icon mt-3">Download <i
+                    class="fa-solid fa-download"></i></a>
+        </div>
+    </div> -->
+    <a class="btn btn-primary" href="/home" style="color:white; padding:10px ;margin-top:30px; margin-left:570px;"><div style="display: flex; justify-content: space-between; padding:5px;">
+      <div>
+        <i class="fa-solid fa-backward" style="margin-right: 10px;"></i>
+      </div>
+      <div>
+        Back
+      </div>
+    </div></a>
+    </div>
+      </div>
+    </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

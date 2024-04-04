@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='employee.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        window.onload=function(){
+            {% for resume in resumes %}
+            getInterviewStatusAndToggleButtons({{ resume.id }});
+            {% endfor %}
+        };
+
+        function getInterviewStatusAndToggleButtons(resumeId){
+            fetch(`/get_interview_status/${resumeId}`)
+        .then(response => response.json())
+        .then(data => {
+            toggleInterviewButtons(resumeId, data.intro_status,data.interview1_status,data.interview2_status);
+        });
+        }
+        function toggleInterviewButtons(resumeId,introStatus,interview1Status,interview2Status){
+            const introButton = document.getElementById(`introButton${resumeId}`);
+            const interview1Button = document.getElementById(`interview1Button${resumeId}`);
+            const interview2Button=document.getElementById(`interview2Button${resumeId}`);
+            const hrButton=document.getElementById(`hrButton${resumeId}`)
+            if (introStatus === "Intro call not conducted" ||introStatus === "Rejected" ) {
+            // If Intro call not conducted, hide Interview 1 button
+            interview1Button.style.display = "none";
+            interview2Button.style.display="none";
+            hrButton.style.display="none";
+        }
+            if (interview1Status === "Interview 1 not conducted" || interview1Status === "Rejected"){
+                interview2Button.style.display="none";
+                hrButton.style.display="none";
+            }
+            if (interview2Status==="Interview 2 not conducted" || interview2Status==="Rejected"){
+                hrButton.style.display="none"
+            }
+
+        }
+    </script>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+            <div class="alert alert-danger add_flash_message" role="alert">
+                {{ message }}
+            </div>
+            {% elif category == 'success' %}
+            <div class="alert alert-success add_flash_message" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+    {% endwith %}     
+    <div class="first_div">
+        {% include 'sidemenu.html'%}
+
+        <div style="width: 100%; margin-left:95px;" class="container">
+            <div class="filters" style="margin-bottom: 20px;">
+                <h1 style="text-align: center;  background-color:#4699F9;color: white">Employee resumes</h1>
+                <div class="flex" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="margin-bottom: 20px; margin-top: 20px;">
+                        <label for="introFilter" style="font-size: 20px; color: #4699F9;">Intro Call Status:</label>
+                        <select  id="introFilter" onchange="filterTableByIntroStatus()" style="margin-bottom: 20px; margin-top: 20px;">
+                            <option value="">Select</option>
+                            
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 20px; margin-top: 20px;">
+                        <label for="interview1Filter" style="font-size: 20px;color: #4699F9;">Interview 1 Status:</label>
+                        <select id="interview1Filter" onchange="filterTableByInterview1Status()" style="margin-bottom: 20px; margin-top: 20px;">
+                            <option value="">Select</option>
+                            
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 20px; margin-top: 20px;">
+                        <label for="interview2Filter" style="font-size: 20px; color: #4699F9;">Interview 2 Status:</label>
+                        <select id="interview2Filter" onchange="filterTableByInterview2Status()" style="margin-bottom: 20px; margin-top: 20px;">
+                            <option value="">Select</option>
+                           
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 20px; margin-top: 20px;">
+                        <label for="allRoundsFilter" style="font-size: 20px; color: #4699F9;">All rounds cleared:</label>
+                        <select id="allRoundsFilter" onchange="filterTableByAllRoundsStatus()" style="margin-bottom: 20px; margin-top: 20px;">
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="table-responsive my-4">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Filename</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Contact number</th>
+                            <th scope="col">Actual CTC</th>
+                            <th scope="col">Expected CTC</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Interview Details</th>
+                            <th scope="col" hidden>intro status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for resume in resumes.items %}
+                            <tr>
+                                <td>{{ resume.id }}</td>
+                                <td>
+                                    <a href="{{ url_for('view_resume', filename=resume.filename) }}" class="long-filename  text-break">{{ resume.filename }}</a>
+                                    <a href="#" style="font-size: 32px; margin-left: 20px; color: yellow;" onclick="getInterviewStatus(event,{{resume.id}})"><i class="fa-solid fa-info" style="font-size: 20px;"></i></a>
+                                    <div id="toggle{{ resume.id }}" style="display: none;">
+                                        <div id="introStatus{{ resume.id }}" style="margin-bottom: 3px; margin-top:5px;"></div>
+                                        <div id="interview1Status{{ resume.id }}" style="margin-bottom: 3px;"></div>
+                                        <div id="interview2Status{{ resume.id }}" style="margin-bottom: 3px;"></div>
+                                        <div id="hrStatus{{ resume.id }}" style="margin-bottom: 3px;"></div>
+                                    </div>
+                                </td>
+                                <td><button class="btn btn-primary" id="btn_name{{resume.id}}"  onclick="showInput({{resume.id}})" title="add"><i class="fa-solid fa-user-plus icons" style="color: white;"></i></button>
+                                    <div style="display: none;" id="name{{resume.id}}">
+                                        <input type="text" id="nameInput{{resume.id}}" style="margin-bottom:10px;">
+                                        <button class="btn btn-primary" id="submitBtn{{resume.id}}" onclick="submitName({{resume.id}})">Submit</button>
+                                    </div>
+                                    <div id="div_name{{resume.id}}" style="display: none;"></div></td>
+                                <td>
+                                    <button class="btn btn-primary" id="btn_contact{{resume.id}}" onclick="showContactInput({{resume.id}})" title="add"><i class="fa-solid fa-user-plus icons" style="color: white;"></i></button>
+                                    <div style="display: none;" id="contact{{resume.id}}">
+                                        <input type="text" id="contactInput{{resume.id}}">
+                                        <button class="btn btn-primary" id="submitBtnContact{{resume.id}}" onclick="submitContact({{resume.id}})">Submit</button>
+                                    </div>
+                                    <div id="div_contact{{resume.id}}" style="display: none;"></div>
+                                </td>
+                                <td><button class="btn btn-primary" id="btn_actualCTC{{resume.id}}" onclick="showActualCTCInput({{resume.id}})" title="add"><i class="fa-solid fa-user-plus icons" style="color: white;"></i></button>
+                                <div style="display: none;" id="actualCTC{{resume.id}}">
+                                    <input type="text" id="actualCTCInput{{resume.id}}">
+                                    <button class="btn btn-primary" id="submitBtnActualCTC{{resume.id}}" onclick="submitActualCTC({{resume.id}})">Submit</button>
+                                </div>
+                                <div id="div_actualCTC{{resume.id}}" style="display: none;"></div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" id="btn_expectedCTC{{resume.id}}" onclick="showExpectedCTCInput({{resume.id}})" title="add"><i class="fa-solid fa-user-plus icons" style="color: white;"></i></button>
+                                    <div style="display: none;" id="expectedCTC{{resume.id}}">
+                                        <input type="text" id="expectedCTCInput{{resume.id}}">
+                                        <button class="btn btn-primary" id="submitBtnExpectedCTC{{resume.id}}" onclick="submitExpectedCTC({{resume.id}})">Submit</button>
+                                    </div>
+                                    <div id="div_expectedCTC{{resume.id}}" style="display: none;"></div>  
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" id="btn_role{{resume.id}}" onclick="showRoleInput({{resume.id}})" title="add"><i class="fa-solid fa-user-plus icons" style="color: white;"></i></button>
+                                    <div style="display: none;" id="role{{resume.id}}">
+                                        <input type="text" id="roleInput{{resume.id}}">
+                                        <button class="btn btn-primary" id="submitBtnRole{{resume.id}}" onclick="submitRole({{resume.id}})">Submit</button>
+                                    </div>
+                                    <div id="div_role{{resume.id}}" style="display: none;"></div>  
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" id="btn_location{{resume.id}}" onclick="showLocationInput({{resume.id}})" title="add"><i class="fa-solid fa-user-plus icons" style="color: white;"></i></button>
+                                    <div style="display: none;" id="location{{resume.id}}">
+                                        <input type="text" id="locationInput{{resume.id}}">
+                                        <button class="btn btn-primary" id="submitBtnLocation{{resume.id}}" onclick="submitLocation({{resume.id}})">Submit</button>
+                                    </div>
+                                    <div id="div_location{{resume.id}}" style="display: none;"></div>  
+                                </td>
+                                <td>
+                                    <a id="introButton{{ resume.id }}" href="{{ url_for('introCall', resume_id=resume.id) }}" class="btn btn-primary mx-1 my-2 " title="Intro call">Intro</a>
+                                    <a id="interview1Button{{ resume.id }}" href="{{ url_for('interview1v', resume_id=resume.id) }}" class="btn btn-primary" title="Interview 1"><i class="fa-solid fa-phone"></i> 1</a>
+                                    <a id="interview2Button{{ resume.id }}" href="{{ url_for('interview2v', resume_id=resume.id) }}" class="btn btn-primary my-3 " title="Interview 2"><i class="fa-solid fa-phone"></i> 2</a>
+                                    <a id="hrButton{{ resume.id }}" href="{{ url_for('hr', resume_id=resume.id) }}" class="btn btn-primary my-3" title="HR round">HR</a>
+                                </td>
+                               <td><a href="{{url_for('resume_details',resume_id=resume.id)}}" class="btn btn-primary mx-1" title="view"><i class="fa-solid fa-eye mx-2" style="color:white;"></i></a></td>
+                               <td id="intro_status" data-resume-id="{{ resume.id }}" hidden></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div style="margin-left:600px; margin-top:100px;">
+                {% for page_num in resumes.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+                    {% if page_num %}
+                    {% if resumes.page == page_num%}
+                        <a class="btn btn-info mb-4" href="{{url_for('employee',page=page_num)}}" style="color: black;  ">{{page_num}}</a>
+                    {% else %}
+                        <a class="btn btn-outline-info mb-4" href="{{url_for('employee',page=page_num)}}" style="color: black; ">{{page_num}}</a>
+                    {% endif %}
+                    {% else%}
+                    ...
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>   
+        </div>
+        
+    </div>
+    
+    
+    <script src="{{ url_for('static', filename='config.js') }}"></script>   
+    <script src="{{ url_for('static', filename='employee.js') }}"></script>
+
+    <script>
+        {% for resume in resumes %}
+            var storedName{{resume.id}}=localStorage.getItem('enteredName{{ resume.id }}');
+            if (storedName{{ resume.id }}){
+                document.getElementById('btn_name{{ resume.id }}').style.display = 'none';
+                document.getElementById('div_name{{ resume.id }}').innerHTML = storedName{{ resume.id }};
+                document.getElementById('div_name{{ resume.id }}').style.display = 'block';
+            }
+            var storedActualCTC{{resume.id}} = localStorage.getItem('enteredActualCTC{{resume.id}}');
+        if (storedActualCTC{{resume.id}}) {
+            document.getElementById('btn_actualCTC{{resume.id}}').style.display = 'none';
+            document.getElementById('div_actualCTC{{resume.id}}').innerHTML = storedActualCTC{{resume.id}};
+            document.getElementById('div_actualCTC{{resume.id}}').style.display = 'block';
+        }
+
+        // Check for stored data for Expected CTC
+        var storedExpectedCTC{{resume.id}} = localStorage.getItem('enteredExpectedCTC{{resume.id}}');
+        if (storedExpectedCTC{{resume.id}}) {
+            document.getElementById('btn_expectedCTC{{resume.id}}').style.display = 'none';
+            document.getElementById('div_expectedCTC{{resume.id}}').innerHTML = storedExpectedCTC{{resume.id}};
+            document.getElementById('div_expectedCTC{{resume.id}}').style.display = 'block';
+        }
+
+        // Check for stored data for Role
+        var storedRole{{resume.id}} = localStorage.getItem('enteredRole{{resume.id}}');
+        if (storedRole{{resume.id}}) {
+            document.getElementById('btn_role{{resume.id}}').style.display = 'none';
+            document.getElementById('div_role{{resume.id}}').innerHTML = storedRole{{resume.id}};
+            document.getElementById('div_role{{resume.id}}').style.display = 'block';
+        }
+        var storedLocation{{resume.id}} = localStorage.getItem('enteredLocation{{resume.id}}');
+        if (storedLocation{{resume.id}}) {
+            document.getElementById('btn_location{{resume.id}}').style.display = 'none';
+            document.getElementById('div_location{{resume.id}}').innerHTML = storedLocation{{resume.id}};
+            document.getElementById('div_location{{resume.id}}').style.display = 'block';
+        }
+        var storedContact{{resume.id}} = localStorage.getItem('enteredContact{{resume.id}}');
+        if (storedContact{{resume.id}}) {
+            document.getElementById('btn_contact{{resume.id}}').style.display = 'none';
+            document.getElementById('div_contact{{resume.id}}').innerHTML = storedContact{{resume.id}};
+            document.getElementById('div_contact{{resume.id}}').style.display = 'block';
+        }
+        {% endfor %}
+    </script>
+</body>
+</html>1

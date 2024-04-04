@@ -1,0 +1,131 @@
+*{
+    font-family:"poppins";
+    
+}
+a{
+    text-decoration: none;
+    color:red;
+}
+.icon-1{
+    color: aqua;
+}
+.icon-2{
+    color: black;
+}
+.filter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.filters_title{
+    background-color:#00ACFF;
+    color:white;
+    text-align: center;
+    margin: 0;
+}
+.select_project{
+    color:#071952;
+}
+.title{
+    color:#00A9FF;
+    
+}
+
+.table .table_header {
+    background-color:#00ACFF;
+    color:white;
+    }
+    .table.table-primary {
+        background-color: #1AACAC !important ; /* Change the background color */
+        color: black !important ; /* Change the text color */
+        /* Add any other custom styling as needed */
+      }
+.label{
+    color:#00A9FF;
+    font-size:20px;
+}     
+.btn{
+    color:whitesmoke;
+}
+tbody tr.resigned-row {
+    background-color: red;
+  }
+/* Add this to your CSS file */
+.table-container {
+    margin: 20px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+  
+  .highlighted-row tr.resigned {
+    background-color: red;
+  }
+  
+  /* Add more styles as needed */
+.select_month{
+    color: red;
+    font-size:20px;
+}  
+*{
+    margin: 0 ;
+}
+.main_div{
+    margin: 0%;
+    width:24%; 
+    height: 100%;
+    margin-right: 10px;
+    background-color:#4699F9;
+}
+.sidemenu_items{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    margin-bottom:40px;
+}
+.sidemenu_items:hover{
+    transform: scale(0.9);
+    
+}
+.icon{
+    margin-right:30px;
+    color: white;
+}
+.main_icon{
+    margin-left:10px;
+    margin-bottom:30px;
+}
+.first_div{
+    display: flex;
+    justify-content: space-between;
+}  
+a:hover {
+    color: #007bff; 
+}
+.poppins{
+    font-family:"poppins"
+}
+
+.icons{
+    color: black;
+}
+.icons:hover{
+    color: grey;
+    transform: scale(1.2);
+}
+.filter_div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.add_a_filter_div{
+    margin-top: ;
+}
+.filters_div{
+    padding: 40px;
+}
+select{
+    width:90px;
+}
